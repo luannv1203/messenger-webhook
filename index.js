@@ -1,6 +1,6 @@
 var express = require("express");
 var bodyPaser = require("body-parser")
-var request = require('request');
+
 const { postWebHook, getWebHook } = require("./controllers/ChatBotController");
 
 require('dotenv').config()

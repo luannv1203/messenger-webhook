@@ -1,3 +1,5 @@
+var request = require('request');
+
 module.exports = {
   getWebHook: (req, res) => {
     // Your verify token. Should be a random string.
