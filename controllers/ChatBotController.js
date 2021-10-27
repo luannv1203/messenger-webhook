@@ -31,7 +31,7 @@ module.exports = {
     let body = req.body;
 
     // Check the webhook event is from a Page subscription
-    if (body.object === 'page') {
+    if (body.object === 'user') {
 
       // Iterate over each entry - there may be multiple if batched
       body.entry.forEach(function(entry) {
@@ -105,7 +105,11 @@ function callSendAPI(sender_psid, response) {
     "method": "POST",
     "json": request_body
   }, (err, res, body) => {
+<<<<<<< HEAD
     console.log(res)
+=======
+    // console.log(res)
+>>>>>>> c1c8da6... init
     if (!err) {
       console.log('message sent!')
       console.log('My message: ' + JSON.stringify(response));
