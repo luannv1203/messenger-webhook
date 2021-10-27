@@ -105,11 +105,7 @@ function callSendAPI(sender_psid, response) {
     "method": "POST",
     "json": request_body
   }, (err, res, body) => {
-<<<<<<< HEAD
     console.log(res)
-=======
-    // console.log(res)
->>>>>>> c1c8da6... init
     if (!err) {
       console.log('message sent!')
       console.log('My message: ' + JSON.stringify(response));
