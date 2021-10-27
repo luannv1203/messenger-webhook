@@ -2,11 +2,13 @@ var express = require("express");
 var bodyPaser = require("body-parser")
 var request = require('request');
 
-// if (process.env.NODE_ENV && process.env.NODE_ENV === "production") {
-//   require("dotenv").config({ path: `.env.${process.env.NODE_ENV}` });
-// } else {
-//   require("dotenv").config();
-// }
+require('dotenv').config()
+
+if (process.env.NODE_ENV && process.env.NODE_ENV === "production") {
+  require("dotenv").config({ path: `.env.${process.env.NODE_ENV}` });
+} else {
+  require("dotenv").config();
+}
 var app = express();
 
 app.use(bodyPaser.json());
@@ -62,7 +64,7 @@ app.post('/webhook', (req, res) => {
 app.get('/webhook', (req, res) => {
 
   // Your verify token. Should be a random string.
-  let VERIFY_TOKEN = "token_verify_webhook"
+  let VERIFY_TOKEN = process.env.VERIFY_TOKEN
     
   // Parse the query params
   let mode = req.query['hub.mode'];
@@ -121,7 +123,7 @@ function callSendAPI(sender_psid, response) {
   // Send the HTTP request to the Messenger Platform
   request({
     "uri": "https://graph.facebook.com/v6.0/me/messages",
-    "qs": { "access_token": 'EAAO09KjCsvABAN3dwy9kQR7SxkDAv0WPZATjvvbk4fF86fyPOV54vw7jH7gjgceI33fOfNLYcujDVOlYnuujfZBZBYQXIppOKiKHSvyVUJCHAB1lntgVbmWZA5mzrk3i1TzDM7TgUB8sJivg4MtvDlA52ZBMH7GWwglAGkZCm4DazeawFrScVjSk4yC6gOkBJti0BjZAfwZAHwZDZD' },
+    "qs": { "access_token": process.env.TOKEN_VERIFY },
     "method": "POST",
     "json": request_body
   }, (err, res, body) => {
