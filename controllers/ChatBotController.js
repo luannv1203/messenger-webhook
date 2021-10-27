@@ -33,7 +33,6 @@ module.exports = {
     if (body.object === 'page') {
 
       // Iterate over each entry - there may be multiple if batched
-      console.log(body.entry)
       body.entry.forEach(function(entry) {
 
         // Gets the body of the webhook event
