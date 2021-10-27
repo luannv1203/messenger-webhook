@@ -12,13 +12,21 @@ if (process.env.NODE_ENV && process.env.NODE_ENV === "production") {
 var app = express();
 
 app.use(bodyPaser.json());
-app.get("/", function (req, res) {
-  res.send("Hello World!");
-});
+// app.get("/", function (req, res) {
+//   res.send("Hello World!");
+// });
 
 var port = process.env.PORT || 8080;
 app.listen(port, function () {
 })
+
+app.get("/", function(request, response)  {
+   
+  response.render("index");
+});
+
+app.set("view engine", "ejs");
+app.set("views", "./views");
 
 app.post('/webhook', (req, res) => {  
  
