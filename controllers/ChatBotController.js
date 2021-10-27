@@ -31,7 +31,7 @@ module.exports = {
     let body = req.body;
 
     // Check the webhook event is from a Page subscription
-    if (body.object === 'user') {
+    if (body.object === 'page') {
 
       // Iterate over each entry - there may be multiple if batched
       body.entry.forEach(function(entry) {
