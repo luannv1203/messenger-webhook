@@ -4,6 +4,10 @@ const app = express().use(bodyPaser.json())
 
 app.listen(8000, () => console.log('Webhook listening on port 8000'))
 
+app.get("/", function (req, res) {
+  res.send("Hello World!");
+});
+
 app.post('/webhook', (req, res) => {  
  
   let body = req.body;
