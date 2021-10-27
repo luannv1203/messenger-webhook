@@ -35,7 +35,7 @@ module.exports = {
 
       // Iterate over each entry - there may be multiple if batched
       body.entry.forEach(function(entry) {
-
+        console.log(entry)
         // Gets the body of the webhook event
         let webhook_event = entry.messaging[0];
         console.log(webhook_event);
