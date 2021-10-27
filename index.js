@@ -1,12 +1,12 @@
 const express = require('express')
 const bodyPaser = require('body-parser')
-const app = express().use(bodyPaser.json())
+const app = express()
 
-app.listen(8080, () => console.log('Webhook listening on port 8080'))
 
 app.get("/", function (req, res) {
   res.send("Hello World!");
 });
+app.listen(8080, () => console.log('Webhook listening on port 8080'))
 
 app.post('/webhook', (req, res) => {  
  
