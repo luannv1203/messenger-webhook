@@ -3,8 +3,6 @@ var bodyPaser = require("body-parser")
 
 const { postWebHook, getWebHook } = require("./controllers/ChatBotController");
 
-require('dotenv').config()
-
 if (process.env.NODE_ENV && process.env.NODE_ENV === "production") {
   require("dotenv").config({ path: `.env.${process.env.NODE_ENV}` });
 } else {
