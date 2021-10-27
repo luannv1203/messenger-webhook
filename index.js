@@ -1,12 +1,21 @@
-const express = require('express')
-const bodyPaser = require('body-parser')
-const app = express()
+var express = require("express");
+var bodyPaser = require("body-parser")
 
+// if (process.env.NODE_ENV && process.env.NODE_ENV === "production") {
+//   require("dotenv").config({ path: `.env.${process.env.NODE_ENV}` });
+// } else {
+//   require("dotenv").config();
+// }
+var app = express();
 
+app.use(bodyPaser.json());
 app.get("/", function (req, res) {
   res.send("Hello World!");
 });
-app.listen(8080, () => console.log('Webhook listening on port 8080'))
+
+var port = process.env.PORT || 8080;
+app.listen(port, function () {
+})
 
 app.post('/webhook', (req, res) => {  
  
