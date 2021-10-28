@@ -105,7 +105,7 @@ function callSendAPI(sender_psid, response) {
     url: 'https://graph.facebook.com/v12.0/me/messages',
     method: 'POST',
     headers: {
-      'Authorization': `Bearer EAADLlZAKTT9EBANXfzDZCIOZBynD5iehDqdXAttQQKFbxB1gMlXF3L7CsmpKNF7MhVylX8r1ZAgM5BPxZA6ZC1svaid7XGWZCfoAL1FKExwRCQIUxRHwIRNtWBSNJs9RmPPKJZAbuUQyMZAshZAgl1pMlcllvd15ZBdimFZAHurWKvVuZCGjgZBT7AToEu`
+      'Authorization': `Bearer ${process.env.TOKEN_PAGE_VERIFY}`
     },
     data: request_body
   }).then(rs => {
