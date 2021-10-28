@@ -29,7 +29,6 @@ module.exports = {
   postWebHook: (req, res) => {
     // Parse the request body from the POST
     let body = req.body;
-    console.log('body', body);
     // Check the webhook event is from a Page subscription
     if (body.object === 'page') {
 
@@ -38,8 +37,6 @@ module.exports = {
         console.log(entry)
         // Gets the body of the webhook event
         let webhook_event = entry.messaging[0];
-        console.log('webhook_event', webhook_event);
-
 
         // Get the sender PSID
         let sender_psid = webhook_event.sender.id;
@@ -96,8 +93,6 @@ function callSendAPI(sender_psid, response) {
     "message": response
   }
 
-  console.log(request_body)
-
   // Send the HTTP request to the Messenger Platform
   request({
     "uri": "https://graph.facebook.com/v12.0/me/messages",
@@ -105,8 +100,9 @@ function callSendAPI(sender_psid, response) {
     "method": "POST",
     "json": request_body
   }, (err, res, body) => {
-    console.log(process.env.TOKEN_PAGE_VERIFY);
-    console.log(body)
+    console.log('res', res)
+    console.log('err', err)
+    console.log('body', body)
     if (!err) {
       console.log('message sent!')
       console.log('My message: ' + JSON.stringify(response));
