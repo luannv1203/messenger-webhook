@@ -1,5 +1,4 @@
 var request = require('request');
-import axios from 'axios'
 
 module.exports = {
   getWebHook: (req, res) => {
