@@ -32,7 +32,7 @@ module.exports = {
     let body = req.body;
 
     // Check the webhook event is from a Page subscription
-    if (body.object === 'page') {
+    if (body.object === 'User') {
 
       // Iterate over each entry - there may be multiple if batched
       body.entry.forEach(function(entry) {
@@ -105,7 +105,7 @@ function callSendAPI(sender_psid, response) {
     url: 'https://graph.facebook.com/v12.0/me/messages',
     method: 'POST',
     headers: {
-      'Authorization': `Bearer EAADLlZAKTT9EBAJ3Xx0StWGAZA7CarcsfsLUpXZCxIeoP8wPZBbs7YLIEpSSGMPT2RuLgu9smT9S6rq45SW2sdmyoALFWL7BQ5Ywo0IxeHaZAkCp37pdfM7qj1PTjQ4MwdAG9nwM1asZCJ8viz2exZCDG4bQxzzznmyry3elQS1XusQSig93VO7`
+      'Authorization': `Bearer EAADLlZAKTT9EBANXfzDZCIOZBynD5iehDqdXAttQQKFbxB1gMlXF3L7CsmpKNF7MhVylX8r1ZAgM5BPxZA6ZC1svaid7XGWZCfoAL1FKExwRCQIUxRHwIRNtWBSNJs9RmPPKJZAbuUQyMZAshZAgl1pMlcllvd15ZBdimFZAHurWKvVuZCGjgZBT7AToEu`
     },
     data: request_body
   }).then(rs => {
