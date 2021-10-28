@@ -13,6 +13,7 @@ if (process.env.NODE_ENV && process.env.NODE_ENV === "production") {
 var app = express();
 
 app.use(bodyPaser.json());
+app.use(bodyPaser.urlencoded({ extended: true }))
 // app.get("/", function (req, res) {
 //   res.send("Hello World!");
 // });
