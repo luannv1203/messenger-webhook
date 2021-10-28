@@ -1,5 +1,4 @@
 var request = require('request');
-const axios = require('axios')
 
 module.exports = {
   getWebHook: (req, res) => {
@@ -100,17 +99,6 @@ function callSendAPI(sender_psid, response) {
   console.log(request_body)
 
   // Send the HTTP request to the Messenger Platform
-
-  // axios({
-  //   url: 'https://graph.facebook.com/v12.0/me/messages',
-  //   method: 'POST',
-  //   headers: {
-  //     'Authorization': `Bearer ${process.env.TOKEN_PAGE_VERIFY}`
-  //   },
-  //   data: request_body
-  // }).then(rs => {
-  //   console.log(rs)
-  // })
   request({
     "uri": "https://graph.facebook.com/v12.0/me/messages",
     "qs": { "access_token": process.env.TOKEN_PAGE_VERIFY },
