@@ -101,29 +101,29 @@ function callSendAPI(sender_psid, response) {
 
   // Send the HTTP request to the Messenger Platform
 
-  axios({
-    url: 'https://graph.facebook.com/v12.0/me/messages',
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${process.env.TOKEN_PAGE_VERIFY}`
-    },
-    data: request_body
-  }).then(rs => {
-    console.log(rs)
-  })
-  // request({
-  //   "uri": "https://graph.facebook.com/v12.0/me/messages",
-  //   "qs": { "access_token": 'EAAO09KjCsvABAHXysdbNxrCpKK6WABwXvV3FYF90s3ic4pwDfYVlmvvfx0ZC5QturwWPqiN39dMjAOVbeRjrkEQZAyLUBlJWxKck3AH4OAQ6G3sUDbNT2LalkTgjEvXwJ6i1W60ArUBJZB9ro493yIuQ8ScDN5X18iRZC593cs24ZCHs8dolb' },
-  //   "method": "POST",
-  //   "json": request_body
-  // }, (err, res, body) => {
-  //   console.log(process.env.TOKEN_PAGE_VERIFY);
-  //   console.log(body)
-  //   if (!err) {
-  //     console.log('message sent!')
-  //     console.log('My message: ' + JSON.stringify(response));
-  //   } else {
-  //     console.error("Unable to send message:" + err);
-  //   }
-  // });
+  // axios({
+  //   url: 'https://graph.facebook.com/v12.0/me/messages',
+  //   method: 'POST',
+  //   headers: {
+  //     'Authorization': `Bearer ${process.env.TOKEN_PAGE_VERIFY}`
+  //   },
+  //   data: request_body
+  // }).then(rs => {
+  //   console.log(rs)
+  // })
+  request({
+    "uri": "https://graph.facebook.com/v12.0/me/messages",
+    "qs": { "access_token": process.env.TOKEN_PAGE_VERIFY },
+    "method": "POST",
+    "json": request_body
+  }, (err, res, body) => {
+    console.log(process.env.TOKEN_PAGE_VERIFY);
+    console.log(body)
+    if (!err) {
+      console.log('message sent!')
+      console.log('My message: ' + JSON.stringify(response));
+    } else {
+      console.error("Unable to send message:" + err);
+    }
+  });
 }
