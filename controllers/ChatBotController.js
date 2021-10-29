@@ -69,9 +69,34 @@ function handleMessage(sender_psid, received_message) {
   // Check if the message contains text
   if (received_message.text) {    
     // Create the payload for a basic text message
+    // response = {
+    //   "text": `You sent the message: "${received_message.text}". Now send me an image!`
+    // }
+
     response = {
-      "text": `You sent the message: "${received_message.text}". Now send me an image!`
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [{
+            "title": "Hom nay bạn muốn hỏi gì?",
+            "buttons": [
+              {
+                "type": "postback",
+                "title": "Ahihi!",
+                "payload": "yes",
+              },
+              {
+                "type": "postback",
+                "title": "Bhihi!",
+                "payload": "no",
+              }
+            ],
+          }]
+        }
+      }
     }
+
   } else if(received_message.attachments) {
     // Gets the URL of the message attachment
     let attachment_url = received_message.attachments[0].payload.url
