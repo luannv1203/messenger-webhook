@@ -73,6 +73,7 @@ function handleMessage(sender_psid, received_message) {
     //   "text": `You sent the message: "${received_message.text}". Now send me an image!`
     // }
     response = {
+      "text": `Xin chào bạn, để tìm hiểu thông tin cần thiết một cách nhanh nhất vui lòng lựa chọn theo các mục sau`,
       "attachment": {
         "type": "template",
         "payload": {
@@ -87,10 +88,10 @@ function handleMessage(sender_psid, received_message) {
               }]
             },
             {
-              "title": "Nội quy, quy định ",
+              "title": "Nội quy, quy định",
               "buttons": [{
                 "type": "postback",
-                "title": "Xem thêm",
+                "title": "Nội quy, quy định",
                 "payload": "noiquy",
               }]
             },
@@ -98,7 +99,7 @@ function handleMessage(sender_psid, received_message) {
               "title": "Chế độ đãi ngộ",
               "buttons": [{
                 "type": "postback",
-                "title": "Xem thêm",
+                "title": "Chế độ đãi ngộ",
                 "payload": "chedo",
               }]
             },
@@ -106,7 +107,7 @@ function handleMessage(sender_psid, received_message) {
               "title": "Chương trình đào tạo",
               "buttons": [{
                 "type": "postback",
-                "title": "Xem thêm",
+                "title": "Chương trình đào tạo",
                 "payload": "daotao",
               }]
             },
@@ -114,7 +115,7 @@ function handleMessage(sender_psid, received_message) {
               "title": "Tài nguyên CNTT: tài khoản công ty và lưu trữ online",
               "buttons": [{
                 "type": "postback",
-                "title": "Xem thêm",
+                "title": "Tài nguyên CNTT: tài khoản công ty và lưu trữ online",
                 "payload": "tainguyen",
               }]
             },
@@ -122,7 +123,7 @@ function handleMessage(sender_psid, received_message) {
               "title": "Quy trình dự án và và quản lý tasks công việc",
               "buttons": [{
                 "type": "postback",
-                "title": "Xem thêm",
+                "title": "Quy trình dự án và và quản lý tasks công việc",
                 "payload": "task",
               }]
             },
