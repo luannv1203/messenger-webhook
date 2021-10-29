@@ -30,7 +30,7 @@ module.exports = {
     // Parse the request body from the POST
     let body = req.body;
     // Check the webhook event is from a Page subscription
-    if (body.object === 'user') {
+    if (body.object === 'page') {
 
       // Iterate over each entry - there may be multiple if batched
       console.log(body.entry)
@@ -38,6 +38,7 @@ module.exports = {
 
         // Gets the body of the webhook event
         let webhook_event = entry.messaging[0];
+        console.log(webhook_event);
         // Get the sender PSID
         let sender_psid = webhook_event.sender.id;
         console.log('Sender PSID: ' + sender_psid);
@@ -68,32 +69,8 @@ function handleMessage(sender_psid, received_message) {
   // Check if the message contains text
   if (received_message.text) {    
     // Create the payload for a basic text message
-    // response = {
-    //   "text": `You sent the message: "${received_message.text}". Now send me an image!`
-    // }
     response = {
-      "attachment": {
-        "type": "template",
-        "payload": {
-          "template_type": "generic",
-          "elements": [{
-            "title": "Ban muon hoi toi cai gi?",
-            // "subtitle": "Tap a button to answer.",
-            "buttons": [
-              {
-                "type": "postback",
-                "title": "Yes!",
-                "payload": "yes",
-              },
-              {
-                "type": "postback",
-                "title": "No!",
-                "payload": "no",
-              }
-            ],
-          }]
-        }
-      }
+      "text": `You sent the message: "${received_message.text}". Now send me an image!`
     }
   } else if(received_message.attachments) {
     // Gets the URL of the message attachment
@@ -132,19 +109,7 @@ function handleMessage(sender_psid, received_message) {
 
 // Handles messaging_postbacks events
 function handlePostback(sender_psid, received_postback) {
-  let response;
-  
-  // Get the payload for the postback
-  let payload = received_postback.payload;
 
-  // Set the response based on the postback payload
-  if (payload === 'yes') {
-    response = { "text": "Thanks!" }
-  } else if (payload === 'no') {
-    response = { "text": "Oops, try sending another image." }
-  }
-  // Send the message to acknowledge the postback
-  callSendAPI(sender_psid, response);
 }
 
 // Sends response messages via the Send API
