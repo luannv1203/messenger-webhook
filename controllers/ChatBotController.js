@@ -72,39 +72,6 @@ function handleMessage(sender_psid, received_message) {
     // response = {
     //   "text": `You sent the message: "${received_message.text}". Now send me an image!`
     // }
-    // const arrButton = [
-    //   {
-    //     "type": "postback",
-    //     "title": "Thông tin về TimeBird và sơ đồ tổ chức",
-    //     "payload": "Thông tin về TimeBird và sơ đồ tổ chức",
-    //   },
-    //   {
-    //     "type": "postback",
-    //     "title": "Nội quy, quy định",
-    //     "payload": "Nội quy, quy định",
-    //   },
-    //   {
-    //     "type": "postback",
-    //     "title": "Chế độ đãi ngộ",
-    //     "payload": "Chế độ đãi ngộ",
-    //   },
-    //   {
-    //     "type": "postback",
-    //     "title": "Chương trình đào tạo",
-    //     "payload": "Chương trình đào tạo",
-    //   },
-    //   {
-    //     "type": "postback",
-    //     "title": "Tài nguyên CNTT: tài khoản công ty và lưu trữ online",
-    //     "payload": "Tài nguyên CNTT: tài khoản công ty và lưu trữ online",
-    //   },
-    //   {
-    //     "type": "postback",
-    //     "title": "Quy trình dự án và và quản lý tasks công việc",
-    //     "payload": "Quy trình dự án và và quản lý tasks công việc",
-    //   },
-    // ]
-    // response = returnResponse("Xin chào bạn, để tìm hiểu thông tin cần thiết một cách nhanh nhất vui lòng lựa chọn theo các mục sau: ", arrButton)
     response = {
       "attachment": {
         "type": "template",
@@ -116,32 +83,32 @@ function handleMessage(sender_psid, received_message) {
               {
                 "type": "postback",
                 "title": "Thông tin về TimeBird và sơ đồ tổ chức",
-                "payload": "Thông tin về TimeBird và sơ đồ tổ chức",
+                "payload": "1",
               },
               {
                 "type": "postback",
                 "title": "Nội quy, quy định",
-                "payload": "Nội quy, quy định",
+                "payload": "2",
               },
               {
                 "type": "postback",
                 "title": "Chế độ đãi ngộ",
-                "payload": "Chế độ đãi ngộ",
+                "payload": "3",
               },
               {
                 "type": "postback",
                 "title": "Chương trình đào tạo",
-                "payload": "Chương trình đào tạo",
+                "payload": "4",
               },
               {
                 "type": "postback",
                 "title": "Tài nguyên CNTT: tài khoản công ty và lưu trữ online",
-                "payload": "Tài nguyên CNTT: tài khoản công ty và lưu trữ online",
+                "payload": "5",
               },
               {
                 "type": "postback",
                 "title": "Quy trình dự án và và quản lý tasks công việc",
-                "payload": "Quy trình dự án và và quản lý tasks công việc",
+                "payload": "6",
               },
             ]
           }]
