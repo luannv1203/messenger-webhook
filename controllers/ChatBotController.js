@@ -83,33 +83,13 @@ function handleMessage(sender_psid, received_message) {
               {
                 "type": "postback",
                 "title": "Thông tin về TimeBird và sơ đồ tổ chức",
-                "payload": "1",
+                "payload": "yes",
               },
               {
                 "type": "postback",
                 "title": "Nội quy, quy định",
-                "payload": "2",
-              },
-              {
-                "type": "postback",
-                "title": "Chế độ đãi ngộ",
-                "payload": "3",
-              },
-              {
-                "type": "postback",
-                "title": "Chương trình đào tạo",
-                "payload": "4",
-              },
-              {
-                "type": "postback",
-                "title": "Tài nguyên CNTT: tài khoản công ty và lưu trữ online",
-                "payload": "5",
-              },
-              {
-                "type": "postback",
-                "title": "Quy trình dự án và và quản lý tasks công việc",
-                "payload": "6",
-              },
+                "payload": "no",
+              }
             ]
           }]
         }
