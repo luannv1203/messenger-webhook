@@ -81,8 +81,30 @@ async function handleMessage(sender_psid, received_message) {
         ]
       }}
     ])
-    
-    response = buildResponse(res)
+    var elements = []
+    await (() => {
+      res.forEach(item => {
+        elements.push(
+          {
+            "title": item.title,
+            "buttons": [{
+              "type": "postback",
+              "title": item.title,
+              "payload": item._id,
+            }]
+          }
+        )
+      })
+    })()
+    response = {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": elements
+        }
+      }
+    }
   }
   
   // Sends the response message
@@ -108,15 +130,39 @@ async function handlePostback(sender_psid, received_postback) {
         }
       }
     ])
-    response = {"text": "Mời bạn tiếp tục chọn danh mục quan tâm"}
-    response = buildResponse(list)
+    var elements = []
+    await (() => {
+      list.forEach(item => {
+        elements.push(
+          {
+            "title": item.title,
+            "buttons": [{
+              "type": "postback",
+              "title": item.title,
+              "payload": item._id,
+            }]
+          }
+        )
+      })
+    })()
+    response = {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": elements
+        }
+      }
+    }
+    callSendAPI(sender_psid, {"text": "Mời bạn tiếp tục chọn danh mục quan tâm"});
+    callSendAPI(sender_psid, response);
   } else {
     response = {"text": res.content}
+    callSendAPI(sender_psid, response);
   }
-  // Set the response based on the postback payload
   
   // Send the message to acknowledge the postback
-  callSendAPI(sender_psid, response);
+  
 }
 
 // Sends response messages via the Send API
@@ -162,13 +208,5 @@ async function buildResponse(res) {
     })
   })()
 
-  return {
-    "attachment": {
-      "type": "template",
-      "payload": {
-        "template_type": "generic",
-        "elements": elements
-      }
-    }
-  }
+  return 
 }
