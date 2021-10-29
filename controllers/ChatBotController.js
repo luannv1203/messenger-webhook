@@ -73,7 +73,7 @@ async function handleMessage(sender_psid, received_message) {
     // response = {
     //   "text": `You sent the message: "${received_message.text}". Now send me an image!`
     // }
-    callSendAPI(sender_psid, {"text": `Xin chào bạn, để tìm hiểu thông tin cần thiết một cách nhanh nhất vui lòng lựa chọn theo các mục sau`})
+    
     let res = await HandbookModel.aggregate([
       { $match: {
         $and: [
@@ -109,6 +109,7 @@ async function handleMessage(sender_psid, received_message) {
   }
   
   // Sends the response message
+  callSendAPI(sender_psid, {"text": `Xin chào bạn, để tìm hiểu thông tin cần thiết một cách nhanh nhất vui lòng lựa chọn theo các mục sau`})
   callSendAPI(sender_psid, response);
 }
 
