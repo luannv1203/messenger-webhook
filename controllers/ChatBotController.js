@@ -76,7 +76,7 @@ function handleMessage(sender_psid, received_message) {
       "attachment": {
         "type": "template",
         "payload": {
-          "template_type": "list",
+          "template_type": "generic",
           "elements": [
             {
               "title": "Thông tin về TimeBird và sơ đồ tổ chức ",
