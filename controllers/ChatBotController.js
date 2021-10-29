@@ -1,4 +1,5 @@
 var request = require('request');
+const HandbookModel = require('../models/Handbook')
 
 module.exports = {
   getWebHook: (req, res) => {
@@ -63,7 +64,7 @@ module.exports = {
   }
 }
 // Handles messages events
-function handleMessage(sender_psid, received_message) {
+async function handleMessage(sender_psid, received_message) {
   let response;
 
   // Check if the message contains text
@@ -72,62 +73,36 @@ function handleMessage(sender_psid, received_message) {
     // response = {
     //   "text": `You sent the message: "${received_message.text}". Now send me an image!`
     // }
-    callSendAPI(sender_psid, {"text": `Xin chào bạn, để tìm hiểu thông tin cần thiết một cách nhanh nhất vui lòng lựa chọn theo các mục sau`});
+    callSendAPI(sender_psid, {"text": `Xin chào bạn, để tìm hiểu thông tin cần thiết một cách nhanh nhất vui lòng lựa chọn theo các mục sau`})
+    let res = await HandbookModel.aggregate([
+      { $match: {
+        $and: [
+          {'parentID': null}
+        ]
+      }}
+    ])
+    console.log(JSON.stringify(res))
+    var elements = []
+    await (() => {
+      res.forEach(item => {
+        elements.push(
+          {
+            "title": item.title,
+            "buttons": [{
+              "type": "postback",
+              "title": item.title,
+              "payload": item._id,
+            }]
+          }
+        )
+      })
+    })()
     response = {
       "attachment": {
         "type": "template",
         "payload": {
           "template_type": "generic",
-          "elements": [
-            {
-              "title": "Thông tin về TimeBird và sơ đồ tổ chức ",
-              "buttons": [{
-                "type": "postback",
-                "title": "Thông tin về TimeBird và sơ đồ tổ chức",
-                "payload": "info",
-              }]
-            },
-            {
-              "title": "Nội quy, quy định",
-              "buttons": [{
-                "type": "postback",
-                "title": "Nội quy, quy định",
-                "payload": "noiquy",
-              }]
-            },
-            {
-              "title": "Chế độ đãi ngộ",
-              "buttons": [{
-                "type": "postback",
-                "title": "Chế độ đãi ngộ",
-                "payload": "chedo",
-              }]
-            },
-            {
-              "title": "Chương trình đào tạo",
-              "buttons": [{
-                "type": "postback",
-                "title": "Chương trình đào tạo",
-                "payload": "daotao",
-              }]
-            },
-            {
-              "title": "Tài nguyên CNTT: tài khoản công ty và lưu trữ online",
-              "buttons": [{
-                "type": "postback",
-                "title": "Tài nguyên CNTT: tài khoản công ty và lưu trữ online",
-                "payload": "tainguyen",
-              }]
-            },
-            {
-              "title": "Quy trình dự án và và quản lý tasks công việc",
-              "buttons": [{
-                "type": "postback",
-                "title": "Quy trình dự án và và quản lý tasks công việc",
-                "payload": "task",
-              }]
-            },
-          ]
+          "elements": elements
         }
       }
     }

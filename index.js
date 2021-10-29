@@ -1,35 +1,70 @@
-var express = require("express");
+var express = require("express")
 var bodyPaser = require("body-parser")
 
-const { postWebHook, getWebHook } = require("./controllers/ChatBotController");
+const mongoose = require("mongoose")
+const HandbookModel = require('./models/Handbook')
+
+const { postWebHook, getWebHook } = require("./controllers/ChatBotController")
 
 require('dotenv').config()
 
 if (process.env.NODE_ENV && process.env.NODE_ENV === "production") {
-  require("dotenv").config({ path: `.env.${process.env.NODE_ENV}` });
+  require("dotenv").config({ path: `.env.${process.env.NODE_ENV}` })
 } else {
-  require("dotenv").config();
+  require("dotenv").config()
 }
-var app = express();
+var app = express()
 
-app.use(bodyPaser.json());
+app.use(bodyPaser.json())
 app.use(bodyPaser.urlencoded({ extended: true }))
-// app.get("/", function (req, res) {
-//   res.send("Hello World!");
-// });
-
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 8080
+const uri = process.env.DB_URL
 app.listen(port, function () {
+  const connection = mongoose
+    .connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    })
+    .then(() => {
+      console.log("Connected Database!")
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  console.log("Example app listening on port 8080!")
 })
 
-app.get("/", function(request, response)  {
-  response.render("index");
-});
+app.get("/", async function(request, response)  {
+  // let res = await HandbookModel.aggregate([
+  //   { $match: {
+  //     $and: [
+  //       {'parentID': 1}
+  //     ]
+  //   }}
+  // ])
+  // var elements = []
+  // await (() => {
+  //   res.forEach(item => {
+  //     elements.push(
+  //       {
+  //         "title": item.title,
+  //         "buttons": [{
+  //           "type": "postback",
+  //           "title": item.title,
+  //           "payload": item._id,
+  //         }]
+  //       }
+  //     )
+  //   })
+  // })()
+  // console.log(elements);
+  response.render("index")
+})
 
-app.set("view engine", "ejs");
-app.set("views", "./views");
+app.set("view engine", "ejs")
+app.set("views", "./views")
 
-app.post('/webhook', postWebHook);
+app.post('/webhook', postWebHook)
 
 // Adds support for GET requests to our webhook
-app.get('/webhook', getWebHook);
+app.get('/webhook', getWebHook)
