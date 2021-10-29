@@ -1,7 +1,6 @@
 var express = require("express");
-var bodyPaser = require("body-parser")
-
-const { postWebHook, getWebHook } = require("./controllers/ChatBotController");
+var bodyPaser = require("body-parser");
+const { getWebHook, postWebHook } = require("./controllers/ChatBotController");
 
 if (process.env.NODE_ENV && process.env.NODE_ENV === "production") {
   require("dotenv").config({ path: `.env.${process.env.NODE_ENV}` });
@@ -21,14 +20,13 @@ app.listen(port, function () {
   console.log('ahihihii');
 })
 
+app.set("view engine", "ejs");
+app.set("views", "./views");
+
 app.get("/", function(request, response)  {
   response.render("index");
 });
 
-app.set("view engine", "ejs");
-app.set("views", "./views");
+app.get('/webhook', getWebHook)
+app.post('/webhook', postWebHook)
 
-app.post('/webhook', postWebHook);
-
-// Adds support for GET requests to our webhook
-app.get('/webhook', getWebHook);
