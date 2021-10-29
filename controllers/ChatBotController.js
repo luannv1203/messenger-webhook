@@ -81,31 +81,8 @@ async function handleMessage(sender_psid, received_message) {
         ]
       }}
     ])
-    console.log(JSON.stringify(res))
-    var elements = []
-    await (() => {
-      res.forEach(item => {
-        elements.push(
-          {
-            "title": item.title,
-            "buttons": [{
-              "type": "postback",
-              "title": item.title,
-              "payload": item._id,
-            }]
-          }
-        )
-      })
-    })()
-    response = {
-      "attachment": {
-        "type": "template",
-        "payload": {
-          "template_type": "generic",
-          "elements": elements
-        }
-      }
-    }
+    
+    response = buildResponse(res)
   }
   
   // Sends the response message
@@ -114,33 +91,30 @@ async function handleMessage(sender_psid, received_message) {
 }
 
 // Handles messaging_postbacks events
-function handlePostback(sender_psid, received_postback) {
+async function handlePostback(sender_psid, received_postback) {
   let response;
   
   // Get the payload for the postback
   let payload = received_postback.payload;
-
-  // Set the response based on the postback payload
-  switch (payload) {
-    case 'info':
-      response = { "text": "Thông tin về TimeBird và sơ đồ tổ chức!" }
-      break
-    case 'noiquy':
-      response = { "text": "Nội quy, quy định!" }
-      break
-    case 'chedo':
-      response = { "text": "Chế độ đãi ngộ!" }
-      break
-    case 'daotao':
-      response = { "text": "Chương trình đào tạo!" }
-      break
-    case 'tainguyen':
-      response = { "text": "Tài nguyên CNTT: tài khoản công ty và lưu trữ online!" }
-      break
-    case 'task':
-      response = { "text": "Quy trình dự án và và quản lý tasks công việc!" }
-      break
+  let res = await HandbookModel.findById(payload)
+  console.log(res)
+  if(res.isParent) {
+    let list = await HandbookModel.aggregate([
+      {
+        $match: {
+          $and: [
+            {'parentID': res.id}
+          ]
+        }
+      }
+    ])
+    response = {"text": "Mời bạn tiếp tục chọn danh mục quan tâm"}
+    response = buildResponse(list)
+  } else {
+    response = {"text": res.content}
   }
+  // Set the response based on the postback payload
+  
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
 }
@@ -171,16 +145,29 @@ function callSendAPI(sender_psid, response) {
   });
 }
 
-function returnResponse(title, arrButton) {
+async function buildResponse(res) {
+  var elements = []
+  await (() => {
+    res.forEach(item => {
+      elements.push(
+        {
+          "title": item.title,
+          "buttons": [{
+            "type": "postback",
+            "title": item.title,
+            "payload": item._id,
+          }]
+        }
+      )
+    })
+  })()
+
   return {
     "attachment": {
       "type": "template",
       "payload": {
         "template_type": "generic",
-        "elements": [{
-          "title": title,
-          "buttons": arrButton,
-        }]
+        "elements": elements
       }
     }
   }
