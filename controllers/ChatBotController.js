@@ -83,13 +83,33 @@ function handleMessage(sender_psid, received_message) {
               {
                 "type": "postback",
                 "title": "Thông tin về TimeBird và sơ đồ tổ chức",
-                "payload": "yes",
+                "payload": "info",
               },
               {
                 "type": "postback",
                 "title": "Nội quy, quy định",
-                "payload": "no",
-              }
+                "payload": "noiquy",
+              },
+              {
+                "type": "postback",
+                "title": "Chế độ đãi ngộ",
+                "payload": "chedo",
+              },
+              {
+                "type": "postback",
+                "title": "Chương trình đào tạo",
+                "payload": "daotao",
+              },
+              {
+                "type": "postback",
+                "title": "Tài nguyên CNTT: tài khoản công ty và lưu trữ online",
+                "payload": "tainguyen",
+              },
+              {
+                "type": "postback",
+                "title": "Quy trình dự án và và quản lý tasks công việc",
+                "payload": "task",
+              },
             ]
           }]
         }
@@ -109,10 +129,25 @@ function handlePostback(sender_psid, received_postback) {
   let payload = received_postback.payload;
 
   // Set the response based on the postback payload
-  if (payload === 'Thông tin về TimeBird và sơ đồ tổ chức') {
-    response = { "text": "Thanks!" }
-  } else if (payload === 'no') {
-    response = { "text": "Oops, try sending another image." }
+  switch (payload) {
+    case 'info':
+      response = { "text": "Thông tin về TimeBird và sơ đồ tổ chức!" }
+      break
+    case 'noiquy':
+      response = { "text": "Nội quy, quy định!" }
+      break
+    case 'chedo':
+      response = { "text": "Chế độ đãi ngộ!" }
+      break
+    case 'daotao':
+      response = { "text": "Chương trình đào tạo!" }
+      break
+    case 'tainguyen':
+      response = { "text": "Tài nguyên CNTT: tài khoản công ty và lưu trữ online!" }
+      break
+    case 'task':
+      response = { "text": "Quy trình dự án và và quản lý tasks công việc!" }
+      break
   }
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
