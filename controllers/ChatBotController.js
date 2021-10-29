@@ -72,8 +72,8 @@ function handleMessage(sender_psid, received_message) {
     // response = {
     //   "text": `You sent the message: "${received_message.text}". Now send me an image!`
     // }
+    callSendAPI(sender_psid, {"text": `Xin chào bạn, để tìm hiểu thông tin cần thiết một cách nhanh nhất vui lòng lựa chọn theo các mục sau`});
     response = {
-      "text": `Xin chào bạn, để tìm hiểu thông tin cần thiết một cách nhanh nhất vui lòng lựa chọn theo các mục sau`,
       "attachment": {
         "type": "template",
         "payload": {
