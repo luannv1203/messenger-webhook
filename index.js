@@ -1,7 +1,7 @@
 var express = require("express");
 var bodyPaser = require("body-parser")
 
-const { postWebHook, getWebHook } = require("./controllers/ChatBotController");
+const chatBotController = require("./controllers/ChatBotController");
 
 require('dotenv').config()
 
@@ -28,7 +28,7 @@ app.get("/", function(request, response) {
 app.set("view engine", "ejs");
 app.set("views", "./views");
 
-app.post('/webhook', postWebHook);
+app.post('/webhook', chatBotController.postWebHook);
 
 // Adds support for GET requests to our webhook
-app.get('/webhook', getWebHook);
+app.get('/webhook', chatBotController.getWebHook);
