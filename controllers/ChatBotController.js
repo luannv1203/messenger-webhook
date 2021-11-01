@@ -74,7 +74,7 @@ async function handleMessage(sender_psid, received_message) {
     // response = {
     //   "text": `You sent the message: "${received_message.text}". Now send me an image!`
     // }
-    let keywordResult = await HandbookModel.findOne({ keywords: { $regex: ".*" + received_message.text + ".*" } })
+    let keywordResult = await HandbookModel.findOne({ keywords: { $regex: ".*" + received_message.text.toLowerCase() + ".*" } })
     if (keywordResult) {
       callSendAPI(sender_psid, {"text": keywordResult.content})
     } else {
