@@ -59,7 +59,8 @@ app.get("/", async function(request, response)  {
   //     )
   //   })
   // })()
-  // console.log(list);
+  // console.log(list)
+  // console.log(elements)
   response.render("index")
 })
 

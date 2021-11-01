@@ -119,6 +119,8 @@ async function handlePostback(sender_psid, received_postback) {
   
   // Get the payload for the postback
   let payload = received_postback.payload;
+  console.log(payload)
+  console.log(typeof payload)
   if(payload !== '10') {
     currentID = payload
     console.log(11111111, currentID)
