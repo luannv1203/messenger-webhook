@@ -74,43 +74,45 @@ async function handleMessage(sender_psid, received_message) {
     // response = {
     //   "text": `You sent the message: "${received_message.text}". Now send me an image!`
     // }
-    
-    let res = await HandbookModel.aggregate([
-      { $match: {
-        $and: [
-          {'parentID': null}
-        ]
-      }}
-    ])
-    var elements = []
-    await (() => {
-      res.forEach(item => {
-        elements.push(
-          {
-            "title": item.title,
-            "buttons": [{
-              "type": "postback",
+    let keywordResult = await HandbookModel.findOne({ keywords: { $regex: `/${received_message.text}/` } })
+    if (keywordResult) {
+      callSendAPI(sender_psid, {"text": keywordResult.content})
+    } else {
+      let res = await HandbookModel.aggregate([
+        { $match: {
+          $and: [
+            {'parentID': null}
+          ]
+        }}
+      ])
+      var elements = []
+      await (() => {
+        res.forEach(item => {
+          elements.push(
+            {
               "title": item.title,
-              "payload": item._id,
-            }]
+              "buttons": [{
+                "type": "postback",
+                "title": item.title,
+                "payload": item._id,
+              }]
+            }
+          )
+        })
+      })()
+      response = {
+        "attachment": {
+          "type": "template",
+          "payload": {
+            "template_type": "generic",
+            "elements": elements
           }
-        )
-      })
-    })()
-    response = {
-      "attachment": {
-        "type": "template",
-        "payload": {
-          "template_type": "generic",
-          "elements": elements
         }
       }
+      callSendAPI(sender_psid, {"text": `Xin chào bạn, để tìm hiểu thông tin cần thiết một cách nhanh nhất vui lòng lựa chọn theo các mục sau`})
+      callSendAPI(sender_psid, response);
     }
   }
-  
-  // Sends the response message
-  callSendAPI(sender_psid, {"text": `Xin chào bạn, để tìm hiểu thông tin cần thiết một cách nhanh nhất vui lòng lựa chọn theo các mục sau`})
-  callSendAPI(sender_psid, response);
 }
 
 // Handles messaging_postbacks events

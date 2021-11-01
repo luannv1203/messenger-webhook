@@ -9,7 +9,8 @@ const HandbookSchema = new Schema({
   title: {type: String, required: true},
   isParent: {type: Boolean},
   parentID: {type: Number},
-  content: {type: String}
+  content: {type: String},
+  keywords: {type: String, default: null}
 })
 
 const handbookModel = mongoose.model('Handbook', HandbookSchema)

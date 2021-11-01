@@ -35,15 +35,7 @@ app.listen(port, function () {
 })
 
 app.get("/", async function(request, response)  {
-  // let list = await HandbookModel.aggregate([
-  //   {
-  //     $match: {
-  //       $and: [
-  //         {'parentID': 15}
-  //       ]
-  //     }
-  //   },
-  // ]).skip(9).limit(9)
+  let list = await HandbookModel.findOne({ keywords: { $regex: /áđâsđâsd/ } })
   // var elements = []
   // await (() => {
   //   list.forEach(item => {
@@ -59,7 +51,7 @@ app.get("/", async function(request, response)  {
   //     )
   //   })
   // })()
-  // console.log(list)
+  console.log(list)
   // console.log(elements)
   response.render("index")
 })
