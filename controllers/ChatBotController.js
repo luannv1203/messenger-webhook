@@ -178,13 +178,7 @@ async function handlePostback(sender_psid, received_postback) {
   } else {
     console.log(2222222, currentID)
     let list = await HandbookModel.aggregate([
-      {
-        $match: {
-          $and: [
-            {'parentID': currentID}
-          ]
-        }
-      },
+      {$match: {'parentID': ObjectID(currentID)}},
     ]).skip(9).limit(9)
     var elements = []
     await (() => {
