@@ -35,16 +35,18 @@ app.listen(port, function () {
 })
 
 app.get("/", async function(request, response)  {
-  // let res = await HandbookModel.aggregate([
-  //   { $match: {
-  //     $and: [
-  //       {'parentID': 1}
-  //     ]
-  //   }}
-  // ])
+  // let list = await HandbookModel.aggregate([
+  //   {
+  //     $match: {
+  //       $and: [
+  //         {'parentID': 15}
+  //       ]
+  //     }
+  //   },
+  // ]).skip(9).limit(9)
   // var elements = []
   // await (() => {
-  //   res.forEach(item => {
+  //   list.forEach(item => {
   //     elements.push(
   //       {
   //         "title": item.title,
@@ -57,7 +59,7 @@ app.get("/", async function(request, response)  {
   //     )
   //   })
   // })()
-  // console.log(elements);
+  // console.log(list);
   response.render("index")
 })
 

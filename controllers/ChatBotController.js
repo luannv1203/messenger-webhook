@@ -1,5 +1,6 @@
 var request = require('request');
 const HandbookModel = require('../models/Handbook')
+var currentID
 
 module.exports = {
   getWebHook: (req, res) => {
@@ -118,18 +119,69 @@ async function handlePostback(sender_psid, received_postback) {
   
   // Get the payload for the postback
   let payload = received_postback.payload;
-  let res = await HandbookModel.findById(payload)
-  console.log(res)
-  if(res.isParent) {
+  if(payload !== 10 || payload !== '10') {
+    currentID = payload
+    let res = await HandbookModel.findById(payload)
+    if(res.isParent) {
+      let list = await HandbookModel.aggregate([
+        {
+          $match: {
+            $and: [
+              {'parentID': res.id}
+            ]
+          }
+        },
+      ]).limit(9)
+      var elements = []
+      await (() => {
+        list.forEach(item => {
+          elements.push(
+            {
+              "title": item.title,
+              "buttons": [{
+                "type": "postback",
+                "title": item.title,
+                "payload": item._id,
+              }]
+            }
+          )
+        })
+        if(list.length === 9) {
+          elements[9] = {
+            "title": "Xem thêm",
+            "buttons": [{
+              "type": "postback",
+              "title": "Xem thêm",
+              "payload": 10,
+            }]
+          }
+        }
+      })()
+      response = {
+        "attachment": {
+          "type": "template",
+          "payload": {
+            "template_type": "generic",
+            "elements": elements
+          }
+        }
+      }
+      callSendAPI(sender_psid, {"text": "Mời bạn tiếp tục chọn danh mục quan tâm"});
+      callSendAPI(sender_psid, response);
+    } else {
+      response = {"text": res.content}
+      callSendAPI(sender_psid, response);
+    }
+  } else {
     let list = await HandbookModel.aggregate([
       {
         $match: {
           $and: [
-            {'parentID': res.id}
+            {'parentID': currentID}
           ]
         }
-      }
-    ])
+      },
+    ]).skip(9)
     var elements = []
     await (() => {
       list.forEach(item => {
@@ -156,12 +208,7 @@ async function handlePostback(sender_psid, received_postback) {
     }
     callSendAPI(sender_psid, {"text": "Mời bạn tiếp tục chọn danh mục quan tâm"});
     callSendAPI(sender_psid, response);
-  } else {
-    response = {"text": res.content}
-    callSendAPI(sender_psid, response);
   }
-  
-  // Send the message to acknowledge the postback
   
 }
 

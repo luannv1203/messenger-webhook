@@ -1,62 +1,173 @@
 module.exports = [
   {
-    title: 'Thông tin về TimeBird và sơ đồ tổ chức',
+    title: "Thông tin về TimeBird và sơ đồ tổ chức",
     isParent: true,
     parentID: null,
-    content: ''
+    content: "",
   },
   {
-    title: 'Nội quy, quy định',
+    title: "Nội quy, quy định",
     isParent: true,
     parentID: null,
-    content: ''
+    content: "",
   },
   {
-    title: 'Chế độ đãi ngộ',
+    title: "Chế độ đãi ngộ",
     isParent: true,
     parentID: null,
-    content: ''
+    content: "",
   },
   {
-    title: 'Chương trình đào tạo',
+    title: "Chương trình đào tạo",
     isParent: true,
     parentID: null,
-    content: ''
+    content: "",
   },
   {
-    title: 'Tài nguyên CNTT: tài khoản công ty và lưu trữ online',
+    title: "Tài nguyên CNTT: tài khoản công ty và lưu trữ online",
     isParent: true,
     parentID: null,
-    content: ''
+    content: "",
   },
   {
-    title: 'Quy trình dự án và và quản lý tasks công việc',
+    title: "Quy trình dự án và và quản lý tasks công việc",
     isParent: true,
     parentID: null,
-    content: ''
+    content: "",
   },
   {
-    title: 'Lịch sử TimeBird',
+    title: "Lịch sử TimeBird",
     isParent: false,
     parentID: 1,
-    content: 'https://drive.google.com/drive/folders/10NBuCiSgMOJOwW2YxcuapJzfxPo7zPeV'
+    content:
+      "Tiền thân là Trung tâm nghiên cứu và phát triển Techcom, với mong muốn ứng dụng công nghệ cao giúp các doanh nghiệp số hóa hoạt động đầu tư, thương mại, ngày 08/06/2020 Công ty cổ phần TimeBird chính thức được thành lập.Dưới sự dẫn dắt và điều hành của Anh Nguyễn Thanh Hải – Tổng giám đốc chỉ trong hơn 1 năm phát triển TimeBird đã đạt được quy mô 50-100 nhân sự chất lượng cao với nguồn lực hơn 80% là chuyên môn kỹ thuật. TimeBird nhanh chóng trở thành đối tác uy tín và đáng tin cậy của nhiều doanh nghiệp bạn hàng trong và ngoài nước.",
   },
   {
-    title: 'Tầm nhìn,sứ mệnh',
+    title: "Tầm nhìn,sứ mệnh",
     isParent: false,
     parentID: 1,
-    content: 'https://docs.google.com/document/d/1DRQedbm4hDNhWybmfa7bqqYVOLP9Ho2c/edit?rtpof=true'
+    content:
+      "Dẫn đầu trong cung cấp giải pháp công nghệ giúp các hoạt động sản xuất, đầu tư, thương mại diễn ra nhanh chóng với độ chính xác và bảo mật cao. Tạo ra các ứng dụng, hệ sinh thái công nghệ cao giúp khách hàng dễ dàng quản lý hoạt động kinh doanh, tài sản một cách an toàn và real-time.",
   },
   {
-    title: 'Văn hóa TimeBird',
+    title: "Văn hóa TimeBird",
     isParent: true,
     parentID: 1,
-    content: ''
+    content: "",
   },
   {
-    title: 'Mục tiêu năm 2021',
+    title: "Mục tiêu năm 2021",
     isParent: false,
     parentID: 1,
-    content: 'https://docs.google.com/document/d/1DRQedbm4hDNhWybmfa7bqqYVOLP9Ho2c/edit?rtpof=true'
+    content:
+      "https://docs.google.com/document/d/1DRQedbm4hDNhWybmfa7bqqYVOLP9Ho2c/edit?rtpof=true",
   },
-]
+  {
+    title: "Sơ đồ tổ chức",
+    isParent: true,
+    parentID: 1,
+    content: "",
+  },
+  {
+    title: "Chức năng bộ phận",
+    isParent: true,
+    parentID: 1,
+    content: "",
+  },
+  {
+    title: "Sơ đồ chỗ ngồi",
+    isParent: false,
+    parentID: 1,
+    content: "Updating",
+  },
+  {
+    title: "Địa chỉ liên hệ",
+    isParent: false,
+    parentID: 1,
+    content: "https://docs.google.com/document/d/1QfJEUtyFDLe208OnqT75heVH2a5J0i_C/edit",
+  },
+  {
+    title: "Quy định làm việc",
+    isParent: true,
+    parentID: 2,
+    content: "https://docs.google.com/document/d/1QfJEUtyFDLe208OnqT75heVH2a5J0i_C/edit",
+  },
+  {
+    title: "Giờ làm việc, nghỉ ngơi",
+    isParent: false,
+    parentID: 15,
+    content: "https://docs.google.com/document/d/1QfJEUtyFDLe208OnqT75heVH2a5J0i_C/edit",
+  },
+  {
+    title: "Đăng ký nghỉ, làm việc onsite, remote",
+    isParent: false,
+    parentID: 15,
+    content: "https://docs.google.com/document/d/1QfJEUtyFDLe208OnqT75heVH2a5J0i_C/edit",
+  },
+  {
+    title: "Chấm công và xác nhận công",
+    isParent: false,
+    parentID: 15,
+    content: "https://docs.google.com/document/d/1QfJEUtyFDLe208OnqT75heVH2a5J0i_C/edit",
+  },
+  {
+    title: "Quy tắc ứng xử",
+    isParent: false,
+    parentID: 15,
+    content: "https://docs.google.com/document/d/1QfJEUtyFDLe208OnqT75heVH2a5J0i_C/edit",
+  },
+  {
+    title: "Nội quy lao động",
+    isParent: false,
+    parentID: 15,
+    content: "https://docs.google.com/document/d/1QfJEUtyFDLe208OnqT75heVH2a5J0i_C/edit",
+  },
+  {
+    title: "Bảo mật thông tin",
+    isParent: false,
+    parentID: 15,
+    content: "https://docs.google.com/document/d/1QfJEUtyFDLe208OnqT75heVH2a5J0i_C/edit",
+  },
+  {
+    title: "Thông tin cá nhân",
+    isParent: false,
+    parentID: 15,
+    content: "https://docs.google.com/document/d/1QfJEUtyFDLe208OnqT75heVH2a5J0i_C/edit",
+  },
+  {
+    title: "Thẻ nhân viên",
+    isParent: false,
+    parentID: 15,
+    content: "https://docs.google.com/document/d/1QfJEUtyFDLe208OnqT75heVH2a5J0i_C/edit",
+  },
+  {
+    title: "Mục tiêu cá nhân",
+    isParent: false,
+    parentID: 15,
+    content: "https://docs.google.com/document/d/1QfJEUtyFDLe208OnqT75heVH2a5J0i_C/edit",
+  },
+  {
+    title: "Đánh giá định kỳ",
+    isParent: false,
+    parentID: 15,
+    content: "https://docs.google.com/document/d/1QfJEUtyFDLe208OnqT75heVH2a5J0i_C/edit",
+  },
+  {
+    title: "Tiếp nhận nhân sự",
+    isParent: false,
+    parentID: 15,
+    content: "https://docs.google.com/document/d/1QfJEUtyFDLe208OnqT75heVH2a5J0i_C/edit",
+  },
+  {
+    title: "Thủ tục nghỉ việc",
+    isParent: false,
+    parentID: 15,
+    content: "https://docs.google.com/document/d/1QfJEUtyFDLe208OnqT75heVH2a5J0i_C/edit",
+  },
+  {
+    title: "Kỷ luật lao động",
+    isParent: false,
+    parentID: 15,
+    content: "https://docs.google.com/document/d/1QfJEUtyFDLe208OnqT75heVH2a5J0i_C/edit",
+  },
+];
