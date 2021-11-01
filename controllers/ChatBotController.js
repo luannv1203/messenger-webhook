@@ -177,8 +177,9 @@ async function handlePostback(sender_psid, received_postback) {
     }
   } else {
     console.log(2222222, currentID)
+    let res = await HandbookModel.findById(currentID)
     let list = await HandbookModel.aggregate([
-      {$match: {'parentID': ObjectID(currentID)}},
+      {$match: {'parentID': res.id}},
     ]).skip(9).limit(9)
     var elements = []
     await (() => {
