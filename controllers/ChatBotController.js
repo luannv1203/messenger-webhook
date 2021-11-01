@@ -119,7 +119,7 @@ async function handlePostback(sender_psid, received_postback) {
   
   // Get the payload for the postback
   let payload = received_postback.payload;
-  if(payload !== 10 || payload !== '10') {
+  if(payload !== '10') {
     currentID = payload
     let res = await HandbookModel.findById(payload)
     if(res.isParent) {

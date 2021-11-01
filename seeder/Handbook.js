@@ -8,8 +8,8 @@ let data = [
     'documents': items
   }
 ]
-// const uri = 'mongodb+srv://luannv:luannv@brain-loss-db.bakke.mongodb.net/handbook?retryWrites=true&w=majority'
-const uri = 'mongodb://localhost:27017/handbook'
+const uri = 'mongodb+srv://luannv:luannv@brain-loss-db.bakke.mongodb.net/handbook?retryWrites=true&w=majority'
+// const uri = 'mongodb://localhost:27017/handbook'
 seeder.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: false}, function() {
   seeder.loadModels([
     './models/Handbook.js',
