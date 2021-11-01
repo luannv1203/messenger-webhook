@@ -120,12 +120,9 @@ async function handlePostback(sender_psid, received_postback) {
   let response;
   
   // Get the payload for the postback
-  let payload = received_postback.payload;
-  console.log(payload)
-  console.log(typeof payload)
+  let payload = received_postback.payload
   if(payload !== '10') {
     currentID = payload
-    console.log(11111111, currentID)
     let res = await HandbookModel.findById(payload)
     if(res.isParent) {
       let list = await HandbookModel.aggregate([
@@ -178,7 +175,6 @@ async function handlePostback(sender_psid, received_postback) {
       callSendAPI(sender_psid, response);
     }
   } else {
-    console.log(2222222, currentID)
     let res = await HandbookModel.findById(currentID)
     let list = await HandbookModel.aggregate([
       {$match: {'parentID': res.id}},

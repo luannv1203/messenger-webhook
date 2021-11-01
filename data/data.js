@@ -40,14 +40,14 @@ module.exports = [
     isParent: false,
     parentID: 1,
     content:
-      "Tiền thân là Trung tâm nghiên cứu và phát triển Techcom, với mong muốn ứng dụng công nghệ cao giúp các doanh nghiệp số hóa hoạt động đầu tư, thương mại, ngày 08/06/2020 Công ty cổ phần TimeBird chính thức được thành lập.Dưới sự dẫn dắt và điều hành của Anh Nguyễn Thanh Hải – Tổng giám đốc chỉ trong hơn 1 năm phát triển TimeBird đã đạt được quy mô 50-100 nhân sự chất lượng cao với nguồn lực hơn 80% là chuyên môn kỹ thuật. TimeBird nhanh chóng trở thành đối tác uy tín và đáng tin cậy của nhiều doanh nghiệp bạn hàng trong và ngoài nước.",
+      "https://drive.google.com/drive/folders/10NBuCiSgMOJOwW2YxcuapJzfxPo7zPeV",
   },
   {
     title: "Tầm nhìn,sứ mệnh",
     isParent: false,
     parentID: 1,
     content:
-      "Dẫn đầu trong cung cấp giải pháp công nghệ giúp các hoạt động sản xuất, đầu tư, thương mại diễn ra nhanh chóng với độ chính xác và bảo mật cao. Tạo ra các ứng dụng, hệ sinh thái công nghệ cao giúp khách hàng dễ dàng quản lý hoạt động kinh doanh, tài sản một cách an toàn và real-time.",
+      "https://docs.google.com/document/d/1DRQedbm4hDNhWybmfa7bqqYVOLP9Ho2c/edit?rtpof=true",
   },
   {
     title: "Văn hóa TimeBird",
